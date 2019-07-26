@@ -77,10 +77,12 @@ img{
   padding: 50px 0px;
 }
 
+.single-photo-item{
+  margin-bottom: 40px;
+}
 
 .single-photo-item h5 {
   text-transform: uppercase;
-  margin-top: 20px;
   margin-bottom: 0px;
 }
 
@@ -116,4 +118,17 @@ p.cat-name {
 
 .copyright-text {
   margin-bottom: 30px;
+}
+
+.photo-wrapper {
+  height: 190px;
+  margin-bottom: 15px;
+}
+
+
+
+.photo-wrapper img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
