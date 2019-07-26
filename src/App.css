@@ -1,33 +1,119 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Darker+Grotesque:300,400,500,600,700,800,900&display=swap');
+
+
+body{
+  font-family: 'Darker Grotesque', sans-serif;
+  font-size: 18px;
+}
+
+header.header{
+  padding: 20px 0;
+}
+
+h2{
+  font-weight: 900;
   text-align: center;
+  margin-bottom: 30px;
+}
+a.logo {
+  font-size: 30px;
+  color: #000;
+  font-weight: 800;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.mainmenu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mainmenu li {
+  display: inline-block;
 }
 
-.App-link {
-  color: #61dafb;
+.mainmenu li a {
+  display: block;
+  color: #000;
+  text-transform: uppercase;
+  padding: 12px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mainmenu li a:hover:after{
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  height: 2px;
+  background: #000;
+  content: "";
+  width: 30px;
+  margin-left: -15px;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+input[type=text]{
+  border: 1px solid #ddd;
+  padding: 5px 20px;
+}
+
+input[type=submit]{
+  border: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 25px;
+}
+
+input:focus{
+  outline:none;
+}
+img{
+  max-width: 100%;
+}
+
+.content-block {
+  padding: 50px 0px;
+}
+
+
+.single-photo-item h5 {
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.single-photo-item a {
+  color: #333;
+}
+
+p.cat-name {
+  opacity: .5;
+  font-size: 90%;
+}
+
+.footer-menu{
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+.footer-menu a{
+  color: #333;
+  text-transform: uppercase;
+  padding: 15px;
+  display: inline-block;
+}
+
+.footer-menu li{
+  display: inline-block;
+}
+
+.footer-menu ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.copyright-text {
+  margin-bottom: 30px;
 }

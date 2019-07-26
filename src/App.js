@@ -18,7 +18,7 @@ function App() {
               <h2>Latest Photos</h2>
 
               <div className="row">
-
+                <LatestPhotos/>
               </div>
             </div>
           </div>

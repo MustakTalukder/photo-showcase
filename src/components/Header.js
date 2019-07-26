@@ -7,11 +7,11 @@ export default class Header extends Component {
             <header>
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4" >
+                        <div className="col-lg-4 my-auto" >
                             <a href="/" className="logo">PhotoShowcase</a>
                         </div>
 
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 my-auto text-center ">
                             <div className="mainmenu"> 
                                 <ul>
                                     <li><a href="/">Home</a></li>
@@ -22,7 +22,7 @@ export default class Header extends Component {
                             </div>
                         </div>
 
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 my-auto text-right">
                             <form action="">
                                 <input type="text" placeholder="Search keyword" />
                                 <input type="submit" value="Search" />
