@@ -7,6 +7,7 @@ import LatestPhotos from './components/LatestPhotos';
 import About from './components/pages/About';
 import Disclaimer from './components/pages/Disclaimer';
 import Credits from './components/pages/Credits';
+import Photo from './components/Photo';
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/about" component={About}  />
               <Route path="/disclaimer" component={Disclaimer}  />
               <Route path="/credits" component={Credits}  />
+              <Route path="/photo" component={Photo}  />
 
 
             </div>
