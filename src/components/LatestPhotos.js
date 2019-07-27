@@ -8,10 +8,13 @@ export default class LatestPhotos extends Component {
     };
     
 
+    
+    
+    
     loadPhoto() {
         axios
         .get(
-          `https://api.unsplash.com/photos?client_id=ed24bba4257b594cd5f5ee8b6009cfd11f558d8d0228df87285a93707f98d6da&per_page=16&page=${this.state.page}`
+          `https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_CLIENT_ID}&per_page=16&page=${this.state.page}`
         )
         .then(res => {
           this.setState({
@@ -54,7 +57,10 @@ export default class LatestPhotos extends Component {
         
     }
 
-  render() {
+    render() {
+      console.log(`${process.env.REACT_APP_CLIENT_ID}`);
+      console.log(process.env.REACT_APP_CLIENT_ID);
+      
     console.log(this.state.photos);
 
       

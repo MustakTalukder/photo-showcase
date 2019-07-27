@@ -2,8 +2,8 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LatestPhotos from './components/LatestPhotos';
-
 import './App.css';
+
 
 function App() {
   return (
