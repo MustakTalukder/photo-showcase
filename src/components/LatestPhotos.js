@@ -44,8 +44,12 @@ export default class LatestPhotos extends Component {
         this.setState({
             page: this.state.page +1 
         })
+      
+      if (this.state.searching === true) {
+        this.searchPhoto()
+      } else {
         this.loadPhoto();
-
+      }
         console.log(this.state.page);
         
         
@@ -57,7 +61,13 @@ export default class LatestPhotos extends Component {
             this.setState({
                 page: this.state.page - 1
             })
-            this.loadPhoto();
+          
+            if (this.state.searching === true) {
+              this.searchPhoto()
+            } else {
+              this.loadPhoto();
+            }
+            
         }
 
         console.log(this.state.page);
@@ -73,13 +83,8 @@ export default class LatestPhotos extends Component {
   }
   
 
-
-  submitHandler = e => {
-    e.preventDefault()
-
-    console.log(this.state.seachQuery);
+  searchPhoto = () => {
     
-
     axios
     .get(
       `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_CLIENT_ID}&query=${this.state.seachQuery}&per_page=16&page=${this.state.page}`
@@ -90,10 +95,20 @@ export default class LatestPhotos extends Component {
       });
     });
 
-
     this.setState({
       searching: true
     })
+  }
+
+
+  submitHandler = e => {
+    e.preventDefault()
+
+    this.searchPhoto()
+
+    console.log(this.state.seachQuery);
+    
+
   }
 
 
@@ -101,18 +116,23 @@ export default class LatestPhotos extends Component {
 
 
 
-    render() {
-      console.log(`${process.env.REACT_APP_CLIENT_ID}`);
-      console.log(process.env.REACT_APP_CLIENT_ID);
+  render() {
+
+    let shearchHeading = '';
       
-    console.log(this.state.photos);
+    if (this.state.searching === true) {
+      shearchHeading = <h2>Your searched with <i>{this.state.seachQuery}</i> </h2>
+      
+    } else {
+      shearchHeading = <h2>Latest Photos</h2>
+    }
 
       
       return (
         < React.Fragment >
           
           <div className="row top-heading">
-            <div className="col my-auto"><h2>Latest Photos</h2></div>
+            <div className="col my-auto">{shearchHeading}</div>
               <div className="col col-auto my-auto">
                 <form action="" onSubmit={this.submitHandler}>
                   <input onChange={this.changeHandler} type="text" placeholder="Search Key"/>
@@ -148,8 +168,8 @@ export default class LatestPhotos extends Component {
               
 
               <div className="row">
-              <div className="col-lg-12">
-                  <div className="load-more-">
+              <div className="col-lg-12 text-center">
+                  <div className="load-more-btn">
                       <button className="btn btn-warning mr-2" onClick={this.loadPrePageHandler}>Back Page {this.state.page-1}</button>
                       <button className="btn btn-warning"  onClick={this.loadNextPageHandler}>Load Page {this.state.page}</button>
                   </div>

@@ -1,12 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LatestPhotos from './components/LatestPhotos';
+
+import About from './components/pages/About';
+import Disclaimer from './components/pages/Disclaimer';
+import Credits from './components/pages/Credits';
+
 import './App.css';
 
 
 function App() {
+
   return (
+    <Router>
     <div className="App">
      
       <Header />
@@ -16,7 +24,11 @@ function App() {
           <div className="row">
             <div className="col">
 
-                <LatestPhotos />
+              <Route exact path="/" render={props => (<LatestPhotos />)}  />
+              <Route path="/about" component={About}  />
+              <Route path="/disclaimer" component={Disclaimer}  />
+              <Route path="/credits" component={Credits}  />
+
 
             </div>
           </div>
@@ -26,7 +38,8 @@ function App() {
 
       <Footer/>
       
-    </div>
+      </div>
+    </Router>
   );
 }
 
