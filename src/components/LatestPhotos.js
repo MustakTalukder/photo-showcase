@@ -4,8 +4,11 @@ import axios from "axios";
 export default class LatestPhotos extends Component {
   state = {
       photos: [],
-      page: 1
-    };
+    page: 1,
+    searching: false,
+    seachQuery: ''
+  };
+  
     
 
     
@@ -22,7 +25,10 @@ export default class LatestPhotos extends Component {
           });
         });
 
-        window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+        });
 
     }
 
@@ -57,7 +63,43 @@ export default class LatestPhotos extends Component {
         console.log(this.state.page);
         
         
-    }
+  }
+
+
+  changeHandler = e => {
+    this.setState({
+      seachQuery: e.target.value
+    })
+  }
+  
+
+
+  submitHandler = e => {
+    e.preventDefault()
+
+    console.log(this.state.seachQuery);
+    
+
+    axios
+    .get(
+      `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_CLIENT_ID}&query=${this.state.seachQuery}&per_page=16&page=${this.state.page}`
+    )
+    .then(res => {
+      this.setState({
+        photos: res.data.results
+      });
+    });
+
+
+    this.setState({
+      searching: true
+    })
+  }
+
+
+
+
+
 
     render() {
       console.log(`${process.env.REACT_APP_CLIENT_ID}`);
@@ -67,8 +109,22 @@ export default class LatestPhotos extends Component {
 
       
       return (
-          < React.Fragment >
-              
+        < React.Fragment >
+          
+          <div className="row top-heading">
+            <div className="col my-auto"><h2>Latest Photos</h2></div>
+              <div className="col col-auto my-auto">
+                <form action="" onSubmit={this.submitHandler}>
+                  <input onChange={this.changeHandler} type="text" placeholder="Search Key"/>
+                  <input type="submit" value="Search"/>
+                </form>
+              </div>
+            
+          </div>
+          
+          <div className="row">
+
+
               {
                 this.state.photos.map(photo => (
                 <div key={photo.id} className="col-lg-3">
@@ -86,13 +142,18 @@ export default class LatestPhotos extends Component {
                     </div>
                 </div>
                 ))
-              }
+            }
+            
+            </div>
+              
 
+              <div className="row">
               <div className="col-lg-12">
                   <div className="load-more-">
-                      <button onClick={this.loadPrePageHandler}>Back Page {this.state.page-1}</button>
-                      <button onClick={this.loadNextPageHandler}>Load Page {this.state.page}</button>
+                      <button className="btn btn-warning mr-2" onClick={this.loadPrePageHandler}>Back Page {this.state.page-1}</button>
+                      <button className="btn btn-warning"  onClick={this.loadNextPageHandler}>Load Page {this.state.page}</button>
                   </div>
+              </div>
               </div>
               
           </React.Fragment >
